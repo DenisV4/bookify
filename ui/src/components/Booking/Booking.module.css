@@ -1,0 +1,106 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.title {
+  align-self: center;
+  font-weight: 600;
+}
+
+.content {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  max-width: 420px;
+}
+
+.caption {
+  font-weight: 500;
+}
+
+.hotel,
+.address,
+.item,
+.user,
+.period {
+  display: flex;
+  gap: 12px;
+}
+
+.hotel,
+.city,
+.date,
+.price {
+  font-weight: 500;
+}
+
+.specification,
+.dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding: 6px 0;
+}
+
+.item {
+  align-items: baseline;
+}
+
+.date {
+  font-size: 14px;
+  color: var(--color-primary);
+}
+
+.prices {
+  display: flex;
+  gap: 32px;
+  align-self: flex-end;
+}
+
+.price {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 6px;
+  align-items: end;
+
+  color: var(--color-primary);
+}
+
+.price span {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-dark);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-self: center;
+  justify-content: space-between;
+
+  width: 80%;
+  margin-top: 16px;
+}
+
+.button {
+  width: 120px;
+}

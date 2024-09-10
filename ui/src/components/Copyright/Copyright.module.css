@@ -1,0 +1,12 @@
+.copyright {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.name {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+

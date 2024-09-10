@@ -1,0 +1,28 @@
+spring:
+  liquibase:
+    enabled: false
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+      
+  datasource:
+    hikari:
+      schema: booking_schema
+      connection-timeout: 10000
+
+  kafka:
+    consumer:
+      group-id: statistics
+
+app:
+  kafka:
+    topic:
+      statistics:
+        authentication: authentications
+        user-registration: user-registrations
+        booking: bookings
+
+  security:
+    jwt:
+      refreshTokenCookieName: REFRESH-TOKEN

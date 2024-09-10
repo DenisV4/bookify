@@ -1,0 +1,78 @@
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hotel {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
+  height: calc(1em * 1.15 * 2);
+
+  font-weight: 500;
+  white-space: normal;
+
+  -webkit-line-clamp: 2;
+}
+
+.address {
+  font-size: 14px;
+}
+
+.address span {
+  font-weight: 500;
+}
+
+.title {
+  height: calc(1em * 1.15 * 2);
+  padding-right: 8px;
+  font-size: 14px;
+}
+
+.rating {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding: 6px 0;
+}
+
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.caption {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.value {
+  position: relative;
+  z-index: 1;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.value::before {
+  content: url("../rating.svg");
+
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: fit-content;
+  height: fit-content;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}

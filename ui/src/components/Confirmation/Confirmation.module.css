@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+
+  width: 260px;
+}
+
+.icon {
+  width: 46px;
+  height: 46px;
+  fill: var(--color-primary);
+}
+
+.message {
+  font-size: 18px;
+  line-height: 140%;
+  color: var(--color-cerise);
+}
+
+.buttons {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  width: 100%;
+}
+
+.button {
+  width: 100%;
+}

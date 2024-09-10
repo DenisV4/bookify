@@ -1,0 +1,60 @@
+.link {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: max-content auto;
+  gap: 8px;
+  align-items: center;
+
+  width: max-content;
+
+  transition: color var(--animation-time) ease-in-out;
+}
+
+.link::before {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  transform: translate(-4px, -4px);
+
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+
+  opacity: 0;
+  border: 2px solid var(--color-cornflower-blue);
+  border-radius: 3px;
+
+  transition: opacity var(--animation-time) ease-in-out;
+}
+
+.link:focus {
+  outline: none;
+}
+
+.link:not(:hover, :active, .link.active):focus-visible::before {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover:not(:active, .link.active) {
+    color: var(--color-cornflower-blue);
+  }
+    
+}
+
+.link:active, .active {
+  color: var(--color-primary-light);
+}
+
+.disabled {
+  color: var(--color-bali-hai);
+}
+
+.active, .disabled {
+  pointer-events: none;
+}

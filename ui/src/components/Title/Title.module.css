@@ -1,0 +1,21 @@
+.title {
+  margin: 0;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.lg {
+  font-size: 36px;
+}
+
+.md {
+  font-size: 32px;
+}
+
+.sm {
+  font-size: 22px;
+}
+
+.xs {
+  font-size: 18px;
+}

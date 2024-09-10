@@ -1,0 +1,12 @@
+.card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 8px;
+
+  background-color: var(--color-link-water);
+  border-radius: 5px;
+}

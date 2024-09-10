@@ -1,0 +1,15 @@
+{
+	"extends": [
+		"stylelint-config-standard",
+		"stylelint-config-standard-scss",
+		"stylelint-config-clean-order"
+	],
+	"ignoreFiles": [
+		"public/**/*{.css,.scss}",
+		"node_modules/**/*{.css,.scss}"
+	],
+	"rules": {
+		"font-family-no-duplicate-names": null,
+		"property-no-vendor-prefix": null
+	}
+}

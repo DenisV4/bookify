@@ -1,0 +1,199 @@
+.field {
+  --button-side: calc(var(--input-height) - var(--input-v-padding));
+
+  position: relative;
+
+  display: flex;
+  flex-direction: var(--field-direction);
+  gap: var(--field-gap);
+  align-items: var(--field-align);
+
+  width: var(--field-width);
+}
+
+.label {
+  overflow: hidden;
+  display: block;
+  flex-shrink: 0;
+
+  padding-left: var(--label-offset);
+
+  color: var(--label-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.input {
+  width: var(--input-width);
+  height: var(--input-height);
+  padding: var(--input-v-padding) var(--input-h-padding);
+
+  font-size: var(--font-size);
+  font-weight: 400;
+  line-height: 100%;
+  color: var(--color-dark);
+
+  background-color: var(--color-hawkes-blue);
+  border: var(--input-border-width) solid transparent;
+  border-radius: 5px;
+
+  transition:
+    border-color var(--animation-time) ease-in-out,
+    background-color var(--animation-time) ease-in-out;
+}
+
+.input.textarea {
+  resize: none;
+  min-height: calc(2 * (var(--input-v-padding) + var(--input-border-width)) + var(--font-size) * 1.2 * 4);
+  line-height: 120%;
+}
+
+.input[type="password"] {
+  padding-right: calc(2 * var(--input-h-padding) + var(--button-side));
+  letter-spacing: 2px;
+}
+
+.input[type="number"] {
+  padding-right: calc(2 * var(--input-h-padding) + var(--button-side) / 2);
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.input[type="number"]::-webkit-inner-spin-button,
+.input[type="number"]::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.input::placeholder {
+  color: var(--color-bali-hai);
+  opacity: 1;
+}
+
+.input:focus {
+  border-color: var(--color-cornflower-blue);
+  outline: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .input:hover:not(:focus) {
+    background-color: var(--color-light-water);
+  }
+}
+
+.input:-webkit-autofill {
+  border-color: var(--color-hawkes-blue);
+  -webkit-box-shadow: 0 0 0 1000px var(--color-hawkes-blue) inset;
+  transition:
+    background-color 5000s ease-in-out 0s,
+    border-color var(--animation-time) ease-in-out,
+    -webkit-box-shadow var(--animation-time) ease-in-out;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus {
+  font-size: var(--font-size);
+
+  -webkit-text-fill-color: var(--color-dark);
+}
+
+.input:-webkit-autofill:focus {
+  border-color: var(--color-cornflower-blue);
+  -webkit-box-shadow: 0 0 0 1000px var(--color-hawkes-blue) inset;
+}
+
+.input:-webkit-autofill:hover:not(:focus) {
+  border-color: var(--color-light-water);
+  -webkit-box-shadow: 0 0 0 1000px var(--color-light-water) inset;
+}
+
+.error {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(var(--label-offset), calc(100% + var(--field-gap)));
+
+  width: max-content;
+  max-width: 90%;
+
+  font-size: 0.8em;
+  line-height: 110%;
+  color: var(--color-cerise);
+}
+
+.right {
+  position: absolute;
+  right: var(--input-h-padding);
+  bottom: calc(var(--input-v-padding) / 2);
+  height: var(--button-side);
+}
+
+.right:has(.eye) {
+  width: var(--button-side);
+}
+
+.right:has(.spin) {
+  width: calc(var(--button-side) / 2);
+}
+
+.spinner {
+  inset: auto var(--input-h-padding) calc(var(--input-v-padding) / 2) auto;
+  transform: translate(0, 0);
+  width: var(--button-side);
+  height: var(--button-side);
+}
+
+.eye {
+  cursor: pointer;
+
+  width: 100%;
+  height: 100%;
+  padding: 0;
+
+  color: var(--color-primary);
+
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 3px;
+
+  transition: border-color var(--animation-time) ease-in-out;
+}
+
+.eye:focus {
+  outline: none;
+}
+
+.eye:focus-visible {
+  border-color: var(--color-cornflower-blue);
+}
+
+.spin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+}
+
+.button {
+  cursor: pointer;
+
+  width: calc(var(--button-side) / 2 - var(--field-gap) / 4);
+  height: calc(var(--button-side) / 2 - var(--field-gap) / 4);
+  padding: 0;
+
+  font-size: 0;
+  color: var(--color-dark);
+
+  background-color: var(--color-link-water);
+  border: none;
+  border-radius: 3px;
+}
+
+.button svg {
+  stroke: currentcolor;
+}

@@ -1,0 +1,98 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: server
+
+  main:
+    allow-bean-definition-overriding: on
+
+  jpa:
+    open-in-view: off
+    generate-ddl: off
+    show-sql: off
+    hibernate:
+      ddl-auto: validate
+
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/booking_db}
+    username: ${DATASOURCE_USERNAME:postgres}
+    password: ${DATASOURCE_PASSWORD:postgres}
+    hikari:
+      schema: ${DATASOURCE_SCHEMA:booking_schema}
+      connection-timeout: ${DATASOURCE_CONNECTION_TIMEOUT:10000}
+
+  liquibase:
+    enabled: true
+
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://root:root@localhost:27017/statistics_db?authSource=admin}
+
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:statistics}
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+springdoc:
+  api-docs:
+    path: api/api-docs
+    resolve-schema-properties: true
+    groups:
+      enabled: true
+
+  override-with-generic-response: false
+  default-produces-media-type: application/json
+  cache:
+    disabled: true
+
+app:
+  security:
+    default-admin:
+      username: admin
+      email: admin@bookify.example
+      password: admin
+
+    jwt:
+      secret: "enigma"
+      accessTokenExpiration: 10m
+      refreshTokenExpiration: 7d
+      refreshTokenCookieName: REFRESH-TOKEN
+
+    cors:
+      allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+
+  kafka:
+    topic:
+      statistics:
+        authentication: authentications
+        user-registration: user-registrations
+        booking: bookings
+
+  openapi:
+    demo-server-url: ${SERVER_URL:http://localhost:8090}
+
+  date-format: dd.MM.yyyy
+  date-time-format: dd.MM.yyyy HH:mm:ss
+
+logging:
+  level:
+    example.bookify.server: info

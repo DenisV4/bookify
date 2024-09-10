@@ -1,0 +1,144 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=booking_db
+    volumes:
+      - ./init-schema.sql:/docker-entrypoint-initdb.d/init-schema.sql
+    networks:
+      - slave
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongo:
+    image: mongo:7.0.12
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: statistics_db
+    volumes:
+      - ./mongo-init:/docker-entrypoint-initdb.d
+    networks:
+      - slave
+    ports:
+      - 27017:27017
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'db.runCommand({ ping: 1 })' | mongosh --quiet --host localhost --username root --password root statistics_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7.4.0
+    container_name: redis
+    networks:
+      - slave
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.7.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - slave
+
+  kafka:
+    image: confluentinc/cp-kafka:7.7.0
+    container_name: kafka
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO, kafka.producer.async.DefaultEventHandler=INFO, state.change.logger=INFO"
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9092, OUTSIDE://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9092, OUTSIDE://${HOST:-localhost}:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT, OUTSIDE:PLAINTEXT
+      KAFKA_LISTENER_NAME: INSIDE
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPIC_ENABLE: 'true'
+    depends_on:
+      - zookeeper
+    networks:
+      - slave
+    ports:
+      - 9092:29092
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "9092"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: ../server
+    image: bookify-server:0.0.1
+    container_name: server
+    environment:
+      SERVER_URL: http://${HOST:-localhost}:${SERVER_PORT:-8090}
+      CORS_ALLOWED_ORIGINS: http://${HOST:-localhost}:${UI_PORT:-80}, http://localhost:${UI_PORT:-80}
+      DATASOURCE_URL: jdbc:postgresql://postgres:5432/booking_db
+      DATASOURCE_USERNAME: postgres
+      DATASOURCE_PASSWORD: postgres
+      DATASOURCE_SCHEMA: booking_schema
+      DATASOURCE_CONNECTION_TIMEOUT: 10000
+      MONGODB_URI: mongodb://root:root@mongo:27017/statistics_db?authSource=admin
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      KAFKA_CONSUMER_GROUP_ID: statistics
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    networks:
+      - slave
+      - master
+    ports:
+      - ${SERVER_PORT:-8090}:8090
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "http://localhost:8090/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  ui:
+    build:
+      context: ../ui
+      args:
+        API_URL: http://${HOST:-localhost}:${UI_PORT:-80}/api
+    image: bookify-ui:0.0.1
+    container_name: ui
+    depends_on:
+      server:
+        condition: service_healthy
+    networks:
+      - master
+    ports:
+      - ${UI_PORT:-80}:80
+
+networks:
+  slave:
+  master:

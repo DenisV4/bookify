@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-rooms
+      author: Denis
+      changes:
+        - createTable:
+            tableName: rooms
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: VARCHAR(4000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: number
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: FLOAT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: guests_number
+                  type: INTEGER
+                  defaultValueNumeric: '1'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hotel_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: hotel_room_fk
+                    referencedTableName: hotels
+                    referencedColumnNames: id

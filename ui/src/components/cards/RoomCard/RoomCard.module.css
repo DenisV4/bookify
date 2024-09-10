@@ -1,0 +1,74 @@
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hotel {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
+  height: calc(1em * 1.15 * 2);
+
+  font-weight: 500;
+  white-space: normal;
+
+  -webkit-line-clamp: 2;
+}
+
+.address {
+  font-size: 14px;
+}
+
+.address span {
+  font-weight: 500;
+}
+
+.description {
+  height: calc(1em * 1.15 * 4);
+  padding-right: 8px;
+  font-size: 14px;
+}
+
+.specification {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding: 6px 0;
+}
+
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.caption {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.price {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 6px;
+  align-items: end;
+
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.price span {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-dark);
+}

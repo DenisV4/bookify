@@ -1,0 +1,119 @@
+/* stylelint-disable selector-class-pattern */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  align-items: flex-start;
+
+  background-color: inherit;
+}
+
+.item {
+  background-color: inherit;
+}
+
+.button {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: max-content auto;
+  gap: 12px;
+  align-items: center;
+
+  margin-bottom: 22px;
+  padding: 0;
+
+  font-size: 22px;
+  line-height: 120%;
+  color: var(--color-primary);
+
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 3px;
+
+  transition: color var(--animation-time) ease-in-out,
+    border-color var(--animation-time) ease-in-out;
+}
+
+.submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  padding-left: 16px;
+
+  font-size: 20px;
+
+  background-color: inherit;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.icon svg {
+  fill: currentcolor;
+  stroke: currentcolor;
+}
+
+@media (width <= 1024px) {
+  .menu {
+    flex-direction: row;
+    gap: 128px;
+  }
+
+  .item {
+    position: relative;
+  }
+
+  .button {
+    cursor: pointer;
+    margin: 0;
+    padding: 2px;
+    color: var(--color-dark);
+  }
+
+  .submenu {
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 6px);
+    left: 50%;
+    transform: translate(-50%, -6px);
+
+    padding: 26px 18px;
+
+    visibility: hidden;
+    opacity: 0;
+    border: 1px solid var(--color-link-water);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 25%);
+  
+    transition: opacity var(--animation-time) ease-in-out,
+      transform var(--animation-time) ease-in-out,
+      visibility var(--animation-time) ease-in-out;
+  }
+
+  .enterDone {
+    transform: translate(-50%, 0);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .button:focus {
+    outline: none;
+  }
+  
+  .button:active {
+    color: var(--color-primary-light);
+  }
+  
+  .button:focus-visible:not(:hover, :active) {
+    border-color: var(--color-cornflower-blue);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .button:hover:not(:active) {
+      color: var(--color-cornflower-blue);
+    }
+  }
+}

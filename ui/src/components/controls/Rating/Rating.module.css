@@ -1,0 +1,40 @@
+/* stylelint-disable selector-class-pattern */
+.wrapper {
+	position: relative;
+  display: flex;
+  gap: 2px;
+	height: fit-content;
+}
+
+.star {
+	display: inline-block;
+
+  padding: 1px;
+
+  font-size: 0;
+
+  border: 2px solid transparent;
+  border-radius: 3px;
+
+  transition: border-color var(--animation-time) ease-in-out;
+}
+
+.star:focus {
+  outline: none;
+}
+
+.star:focus-visible {
+  border-color: var(--color-cornflower-blue);
+}
+
+.star svg {
+	fill: var(--color-primary-light);
+}
+
+.colored svg {
+	fill: var(--color-primary);
+}
+
+.editable {
+	cursor: pointer;
+}

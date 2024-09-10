@@ -1,0 +1,87 @@
+/* stylelint-disable selector-class-pattern */
+.overlay {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgb(0 0 0 / 70%);
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 100%;
+}
+
+.content {
+  --v-padding: 36px;
+  --h-padding: 36px;
+
+  position: relative;
+
+  /* width: 100%; */
+  max-width: 600px;
+  margin: var(--layout-offset);
+  padding: var(--v-padding) calc(var(--h-padding) / 2) var(--v-padding) var(--h-padding);
+
+  background-color: var(--color-hawkes-blue);
+  border-radius: 5px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  max-height: calc(100vh - (var(--v-padding) + var(--layout-offset)) * 2);
+  padding: 5px calc(var(--h-padding) / 2) 0 0;
+
+  border-top: 2px solid transparent;
+}
+
+.wrapper:focus {
+  outline: none;
+}
+
+.wrapper:focus-visible {
+  border-color: var(--color-cornflower-blue);
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 18px;
+  height: 18px;
+}
+
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: opacity var(--animation-time) ease-in-out;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity var(--animation-time) ease-in-out;
+}

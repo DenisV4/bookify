@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-hotels
+      author: Denis
+      changes:
+        - createTable:
+            tableName: hotels
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: distance
+                  type: FLOAT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rating
+                  type: FLOAT
+                  defaultValueNumeric: '0'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ratings_count
+                  type: INTEGER
+                  defaultValueNumeric: '0'
+                  constraints:
+                    nullable: false

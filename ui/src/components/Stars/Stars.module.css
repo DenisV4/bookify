@@ -1,0 +1,11 @@
+.stars {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.stars svg {
+  width: 16px;
+  height: 16px;
+}

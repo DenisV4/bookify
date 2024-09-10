@@ -1,0 +1,37 @@
+.pagination {
+  --font-size: 16px;
+  --field-direction: row;
+  --field-gap: 6px;
+  --field-align: center;
+  --field-width: fit-content;
+  --label-offset: 0;
+  --label-color: inherit;
+  --input-v-padding: 4px;
+  --input-h-padding: 4px;
+  --input-border-width: 2px;
+  --input-height: calc(2 * (var(--input-v-padding) + var(--input-border-width)) + var(--font-size));
+  --input-width: 64px;
+
+  display: grid;
+  grid-template-columns: auto max-content auto;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding: 8px;
+
+  font-weight: 600;
+}
+
+.info {
+  min-width: 160px;
+  text-align: right;
+}
+
+.navigation {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}

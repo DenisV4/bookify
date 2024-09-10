@@ -1,0 +1,109 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-mock-data
+      author: Denis
+
+  - changeSet:
+      id: check-hotels-table
+      author: Denis
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: SELECT 1 FROM hotels LIMIT 1;
+
+  - changeSet:
+      id: insert-data-into-hotels
+      author: Denis
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            changeSetExecuted:
+              id: check-hotels-table
+      changes:
+        - sqlFile:
+            path: data/hotels.sql
+            relativeToChangelogFile: false
+
+  - changeSet:
+      id: check-rooms-table
+      author: Denis
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: SELECT 1 FROM rooms LIMIT 1;
+
+  - changeSet:
+      id: insert-data-into-rooms
+      author: Denis
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            changeSetExecuted:
+              id: check-rooms-table
+      changes:
+        - sqlFile:
+            path: data/rooms.sql
+            relativeToChangelogFile: false
+
+  - changeSet:
+      id: check-users-table
+      author: Denis
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: SELECT 1 FROM users LIMIT 1;
+
+  - changeSet:
+      id: insert-data-into-users
+      author: Denis
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            changeSetExecuted:
+              id: check-users-table
+      changes:
+        - sqlFile:
+            path: data/users.sql
+            relativeToChangelogFile: false
+
+  - changeSet:
+      id: check-user-roles-table
+      author: Denis
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: SELECT 1 FROM user_roles LIMIT 1;
+
+  - changeSet:
+      id: insert-data-into-user-roles
+      author: Denis
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            changeSetExecuted:
+              id: check-user-roles-table
+      changes:
+        - sqlFile:
+            path: data/user_roles.sql
+            relativeToChangelogFile: false
+
+  - changeSet:
+      id: check-bookings-table
+      author: Denis
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: SELECT 1 FROM bookings LIMIT 1;
+
+  - changeSet:
+      id: insert-data-into-bookings
+      author: Denis
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            changeSetExecuted:
+              id: check-bookings-table
+      changes:
+        - sqlFile:
+            path: data/bookings.sql
+            relativeToChangelogFile: false

@@ -1,0 +1,118 @@
+:root {
+  /* content */
+  --lg-content-width: 1400px;
+  --md-content-width: 1200px;
+  --sm-content-width: 768px;
+
+  /* base */
+  --font-family: "Roboto", sans-serif;
+  --content-width: var(--lg-content-width);
+  --layout-offset: 15px;
+  --layout-width: calc(var(--content-width) + (var(--layout-offset) * 2));
+  --animation-time: 0.3s;
+
+  /* colors */
+  --color-light: #e1f3ff;
+  --color-dark: #00355a;
+  --color-cornflower-blue: #0069b4;
+  --color-primary: #0095ff;
+  --color-primary-light: #5387ad;
+  --color-link-water: #a5daff;
+  --color-light-water: #c3e6ff;
+  --color-hawkes-blue: #d2ecff;
+  --color-bali-hai: #71828f;
+  --color-cerise: #d53f8c;
+}
+
+/* breakpoints */
+@media (width <= 1400px) {
+  :root {
+    --content-width: var(--md-content-width);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable both-edges;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  overflow-x: hidden;
+
+  min-width: var(--sm-content-width);
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-dark);
+
+  background-color: var(--color-light);
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+[type="checkbox"]:focus {
+  outline: none;
+}
+
+[type="checkbox"]:focus-visible+label::before {
+  outline: 2px solid var(--color-cornflower-blue);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+
+  overflow: hidden;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body .tooltip {
+  z-index: 100;
+
+  max-width: 400px;
+  padding: 4px;
+
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-light);
+
+  opacity: 0.9;
+  background-color: var(--color-dark);
+}

@@ -1,0 +1,185 @@
+.field {
+  --indicator-side: 18px;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: var(--field-direction);
+  gap: var(--field-gap);
+  align-items: var(--field-align);
+
+  width: var(--field-width);
+}
+
+.label {
+  overflow: hidden;
+  display: block;
+  flex-shrink: 0;
+
+  max-width: 100%;
+  padding-left: var(--label-offset);
+
+  color: var(--label-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.field .container {
+  width: var(--input-width);
+}
+
+.field .select {
+  cursor: text;
+
+  width: var(--input-width);
+  height: var(--input-height);
+  min-height: auto;
+  padding: var(--input-v-padding) var(--input-h-padding);
+  padding-right: calc(var(--indicator-side) + 2 * var(--input-h-padding));
+
+  font-size: var(--font-size);
+  font-weight: 400;
+  line-height: 100%;
+  color: var(--color-dark);
+
+  background-color: var(--color-hawkes-blue);
+  border: var(--input-border-width) solid transparent;
+  border-radius: 5px;
+
+  transition:
+    border-color var(--animation-time) ease-in-out,
+    background-color var(--animation-time) ease-in-out;
+}
+
+.default .select {
+  cursor: default;
+}
+
+.searchable .select {
+  padding-right: calc(2 * var(--indicator-side) + 2 * var(--input-h-padding) + var(--field-gap));
+}
+
+.select.focused {
+  border-color: var(--color-cornflower-blue);
+}
+
+.indicator {
+  position: absolute;
+  top: 50%;
+  right: var(--input-h-padding);
+  transform: translate(0, -50%);
+
+  transition:
+    color var(--animation-time) ease-in-out,
+    transform var(--animation-time) ease-in-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .select:hover:not(.select.focused) .indicator {
+    color: var(--color-cornflower-blue);
+  }
+
+  .select:hover:not(.select.focused) {
+    background-color: var(--color-light-water);
+  }
+}
+
+.indicator svg {
+  width: var(--indicator-side);
+  height: var(--indicator-side);
+  fill: currentcolor;
+  stroke: currentcolor;
+}
+
+.indicator.active {
+  transform: translate(0, -50%) rotate(90deg);
+  color: var(--color-primary-light);
+}
+
+.field .clear {
+  position: absolute;
+  right: calc(var(--input-h-padding) + var(--indicator-side) + var(--field-gap));
+  bottom: calc(var(--input-height) / 2);
+  transform: translate(0, 50%);
+
+  width: calc(var(--indicator-side) - 4px);
+  height: calc(var(--indicator-side) - 4px);
+}
+
+.field .values {
+  gap: calc(2 * var(--field-gap))
+}
+
+.field .value {
+  gap: var(--field-gap);
+  align-items: center;
+  padding: 0 2px;
+  background-color: var(--color-link-water);
+}
+
+.field .remove {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  color: orange;
+}
+
+.field .hidden {
+  display: none;
+}
+
+.field .shaded {
+  color: var(--color-bali-hai);
+}
+
+.field .menu {
+  z-index: 100;
+
+  width: 100%;
+  margin: 2px 0;
+  padding: 6px 0 6px 6px;
+
+  font-weight: 400;
+  color: var(--color-dark);
+
+  background-color: var(--color-hawkes-blue);
+  border: 2px solid var(--color-link-water);
+  border-radius: 5px;
+}
+
+.list {
+  overflow-y: unset !important;
+  display: grid;
+  gap: 8px;
+  padding-right: 6px;
+}
+
+.option {
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.option.focused {
+  background-color: var(--color-link-water);
+}
+
+.spinner {
+  --side: calc(var(--input-height) - var(--input-v-padding));
+
+  inset: auto calc(var(--input-h-padding) + var(--indicator-side) + var(--field-gap)) calc(var(--input-v-padding) / 2) auto;
+  transform: translate(0, 0);
+}
+
+.error {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(var(--label-offset), calc(100% + var(--field-gap)));
+
+  width: max-content;
+  max-width: 90%;
+
+  font-size: 0.8em;
+  line-height: 110%;
+  color: var(--color-cerise);
+}

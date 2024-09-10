@@ -1,0 +1,15 @@
+.logo {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-primary);
+}
+
+.lg {
+  width: 48px;
+  height: auto;
+}
+
+.sm {
+  width: 32px;
+  height: auto;
+}

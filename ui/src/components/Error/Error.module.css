@@ -1,0 +1,22 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  font-size: 22px;
+  color: var(--color-primary);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.message {
+  color: var(--color-primary-light);
+}

@@ -1,0 +1,61 @@
+.image {
+  position: relative;
+  width: 100%;
+}
+
+.image::before {
+  content: "";
+  display: block;
+  padding-top: calc(100% * 400 / 600);
+}
+
+.wrapper {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  background-color: #fff;
+  border-radius: 5px;
+
+  transition: background-color var(--animation-time) ease-in-out;
+}
+
+.wrapper:has(.dummy.loading) {
+  background-color: #5387ad25;
+}
+
+.dummy {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  filter: opacity(0.65);
+
+  animation: fade-in var(--animation-time) ease-in-out;
+}
+
+.dummy.loading {
+  display: none;
+}
+
+.picture {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  height: auto;
+}
+
+@keyframes fade-in {
+  from {
+    filter: opacity(0);
+  }
+ 
+  to {
+    filter: opacity(0.65);
+  }
+}

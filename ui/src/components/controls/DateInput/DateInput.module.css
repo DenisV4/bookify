@@ -1,0 +1,89 @@
+/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+.date {
+  --button-side: calc(var(--input-height) - var(--input-v-padding));
+
+  width: fit-content;
+}
+
+.date .wrapper input {
+  padding: var(--input-v-padding) var(--input-h-padding);
+}
+
+.date .icon {
+  cursor: pointer;
+
+  z-index: 1;
+  right: var(--input-h-padding);
+  bottom: calc(var(--input-v-padding) / 2 + 1px);
+
+  width: var(--button-side);
+  height: var(--button-side);
+  padding: 0 !important;
+
+  vertical-align: unset;
+
+  fill: var(--color-dark);
+
+  transition: fill var(--animation-time) ease-in-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .date .icon:hover {
+    fill: var(--color-cornflower-blue);
+  }
+}
+
+.date .popper {
+  z-index: 2;
+  top: -5px !important;
+}
+
+.date .calendar {
+  overflow: hidden;
+
+  font-family: inherit;
+
+  background-color: var(--color-hawkes-blue);
+  border: 2px solid var(--color-link-water);
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgb(0 0 0 / 25%);
+}
+
+.date .header {
+  display: grid;
+  grid-template-columns: 16px auto auto 16px;
+  gap: 6px;
+  align-items: center;
+  justify-items: center;
+
+  width: 100%;
+  padding: 4px 6px;
+
+  font-size: 14px;
+
+  background-color: var(--color-link-water);
+}
+
+.date .header div[class*="field"] {
+  --input-width: 120px;
+}
+
+.button {
+  position: relative;
+  z-index: 3;
+  width: 18px;
+  height: 18px;
+}
+
+.day {
+  border-radius: 5px;
+  transition: border-color var(--animation-time) ease-in-out;
+}
+
+.day:focus {
+  outline: none;
+}
+
+.day:focus-visible:not(:hover) {
+  border-color: var(--color-cornflower-blue);
+}

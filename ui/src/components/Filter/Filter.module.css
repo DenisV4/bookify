@@ -1,0 +1,84 @@
+/* stylelint-disable selector-class-pattern */
+.wrapper {
+  --font-size: 14px;
+  --field-direction: column;
+  --field-gap: 4px;
+  --field-align: flex-start;
+  --field-width: fit-content;
+  --label-offset: 0;
+  --label-color: inherit;
+  --input-v-padding: 4px;
+  --input-h-padding: 2px;
+  --input-border-width: 2px;
+  --input-height: calc(2 * (var(--input-v-padding) + var(--input-border-width)) + var(--font-size));
+  --input-width: 96px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wrapper label {
+  max-width: var(--input-width);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 100%;
+  padding: 8px;
+}
+
+.caption {
+  font-weight: 600;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.filter div[class*="date-input"] {
+  --input-width: 104px;
+}
+
+
+.filters div[class*="field"]:has(input[class*="input"][type="number"]) {
+  --input-width: 74px;
+}
+
+
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: opacity var(--animation-time) ease-in-out;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity var(--animation-time) ease-in-out;
+}
+
+.button.active {
+  color: var(--color-cerise);
+}

@@ -1,0 +1,60 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.link {
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.title {
+  align-self: center;
+  font-weight: 600;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: auto minmax(260px, 520px) auto;
+}
+
+.form {
+  justify-content: center;
+}
+
+.form div[class*="field"]:has(input[id="user-password"]) {
+  width: 60%;
+}
+
+.form div[class*="field"]:has(input[type="number"]),
+.form div[class*="field"]:has(input[id="room-number"]),
+.form div[class*="field"]:has(div[class*="select"]:not(div[class*="roles"])) {
+  width: calc(50% - var(--form-gap) / 2);
+}
+
+.form .field.roles {
+  width: 100%;
+}
+
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--form-gap);
+  width: 100%;
+}
+
+.button {
+  width: 50%;
+}
